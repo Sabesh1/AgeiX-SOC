@@ -1,0 +1,885 @@
+/* ==========================================================================
+   AegisX SOC - Screen Layouts & View Specific Styling
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. LOGIN SCREEN
+   -------------------------------------------------------------------------- */
+.login-screen-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  background: radial-gradient(circle at 50% 30%, #0d1527 0%, #04070e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-screen-wrap.hidden {
+  display: none;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 460px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-xl);
+  padding: 36px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 242, 254, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--cyan-primary), var(--purple-primary), var(--blue-primary));
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.login-logo-box {
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+  border: 1px solid var(--cyan-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  color: var(--cyan-primary);
+  box-shadow: var(--shadow-cyber-cyan);
+}
+
+.login-title {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--text-bright);
+}
+
+.login-title span {
+  color: var(--cyan-primary);
+}
+
+.login-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.clearance-selector-group {
+  margin-bottom: 20px;
+}
+
+.clearance-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  letter-spacing: 0.8px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.clearance-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.clearance-option {
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-primary);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+}
+
+.clearance-option:hover {
+  border-color: var(--cyan-primary);
+  background: var(--bg-tertiary);
+}
+
+.clearance-option.selected {
+  border-color: var(--cyan-primary);
+  background: rgba(0, 242, 254, 0.08);
+}
+
+.clearance-tier {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--text-bright);
+}
+
+.clearance-sub {
+  font-size: 10px;
+  color: var(--cyan-primary);
+  font-family: var(--font-mono);
+}
+
+/* --------------------------------------------------------------------------
+   2. SOC OVERVIEW DASHBOARD
+   -------------------------------------------------------------------------- */
+.dashboard-grid-main {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1280px) {
+  .dashboard-grid-main {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Live Threat Map Component */
+.threat-map-container {
+  height: 440px;
+  position: relative;
+  border-radius: var(--radius-md);
+  background: #070c18;
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+
+.map-canvas-layer {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.map-overlay-controls {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.map-legend {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  background: rgba(10, 15, 29, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  display: flex;
+  gap: 14px;
+  font-size: 10.5px;
+  z-index: 10;
+}
+
+.map-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+}
+
+.map-stats-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(10, 15, 29, 0.85);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  z-index: 10;
+}
+
+/* AI Agent Activity Panel (Overview right sidebar) */
+.agents-activity-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.agent-live-row {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  transition: all var(--transition-fast);
+}
+
+.agent-live-row:hover {
+  background: rgba(22, 32, 54, 0.8);
+  border-color: var(--border-medium);
+}
+
+.agent-avatar-mini {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.agent-row-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.agent-row-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+
+.agent-name-text {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-bright);
+}
+
+.agent-task-text {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 6px;
+}
+
+.agent-progress-bar-track {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.agent-progress-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.4s ease;
+}
+
+/* Threat Activity Graph & Bottom Grid */
+.dashboard-grid-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 1200px) {
+  .dashboard-grid-bottom {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chart-canvas-container {
+  height: 260px;
+  width: 100%;
+  position: relative;
+}
+
+/* --------------------------------------------------------------------------
+   3. LIVE THREATS STREAM SCREEN
+   -------------------------------------------------------------------------- */
+.stream-controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+}
+
+.stream-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.stream-table-row-new {
+  animation: highlightRow 1.2s ease-out;
+}
+
+@keyframes highlightRow {
+  0% { background: rgba(0, 242, 254, 0.25); }
+  100% { background: transparent; }
+}
+
+/* --------------------------------------------------------------------------
+   4. INCIDENT DETAILS PAGE
+   -------------------------------------------------------------------------- */
+.incident-header-banner {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  border-left: 4px solid var(--red-primary);
+}
+
+.incident-title-area {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.incident-id-tag {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--cyan-primary);
+  background: rgba(0, 242, 254, 0.1);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(0, 242, 254, 0.25);
+}
+
+.incident-name-big {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-bright);
+}
+
+.incident-sub-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.incident-metrics-strip {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Attack Timeline Kill-Chain (Horizontal) */
+.killchain-timeline {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  padding: 18px 0;
+  gap: 12px;
+  position: relative;
+}
+
+.killchain-step {
+  flex: 1;
+  min-width: 170px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  position: relative;
+  transition: all var(--transition-fast);
+}
+
+.killchain-step.active {
+  border-color: var(--red-primary);
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.2);
+}
+
+.killchain-step.completed {
+  border-color: var(--green-primary);
+  background: rgba(16, 185, 129, 0.04);
+}
+
+.killchain-step-num {
+  font-size: 10px;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+
+.killchain-step-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-bright);
+}
+
+.killchain-step-time {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  margin-top: 4px;
+}
+
+/* Agent Decision Trace */
+.decision-trace-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.decision-trace-list::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 7px;
+  bottom: 10px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--cyan-primary), var(--purple-primary), var(--green-primary));
+}
+
+.decision-trace-item {
+  position: relative;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  transition: all var(--transition-fast);
+}
+
+.decision-trace-item:hover {
+  border-color: var(--border-medium);
+  background: var(--bg-tertiary);
+}
+
+.decision-node-dot {
+  position: absolute;
+  left: -20px;
+  top: 16px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 2px solid var(--cyan-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(-50%);
+}
+
+.decision-node-dot::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan-primary);
+}
+
+/* --------------------------------------------------------------------------
+   5. AI AGENTS COMMAND CENTER
+   -------------------------------------------------------------------------- */
+.agents-matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 1200px) {
+  .agents-matrix-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .agents-matrix-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.agent-hero-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-fast);
+}
+
+.agent-hero-card:hover {
+  border-color: var(--border-medium);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.agent-hero-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--cyan-primary);
+}
+
+.agent-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.agent-avatar-big {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-medium);
+  flex-shrink: 0;
+}
+
+.agent-hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  background: rgba(10, 15, 29, 0.6);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  margin: 14px 0;
+  text-align: center;
+}
+
+.agent-stat-box-val {
+  font-size: 14px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--text-bright);
+}
+
+.agent-stat-box-lbl {
+  font-size: 10px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Agent Communication Graph Visualizer */
+.agent-network-canvas-container {
+  height: 340px;
+  position: relative;
+  background: #070c18;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   6. THREAT INTELLIGENCE PAGE
+   -------------------------------------------------------------------------- */
+.intel-search-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  padding: 10px 16px;
+}
+
+.mitre-matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+}
+
+@media (max-width: 1200px) {
+  .mitre-matrix-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.mitre-col {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mitre-col-header {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--cyan-primary);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+}
+
+.mitre-tech-pill {
+  font-size: 10.5px;
+  padding: 5px 8px;
+  border-radius: var(--radius-xs);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.mitre-tech-pill:hover {
+  background: rgba(0, 242, 254, 0.1);
+  color: var(--text-bright);
+  border-color: var(--cyan-primary);
+}
+
+.mitre-tech-pill.detected {
+  background: rgba(239, 68, 68, 0.18);
+  color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.5);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   7. RISK ANALYTICS PAGE
+   -------------------------------------------------------------------------- */
+.risk-matrix-grid-5x5 {
+  display: grid;
+  grid-template-columns: 80px repeat(5, 1fr);
+  grid-template-rows: repeat(5, 48px) 30px;
+  gap: 4px;
+  margin: 16px 0;
+  font-size: 11px;
+}
+
+.matrix-cell {
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.matrix-cell:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.matrix-cell.low { background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.4); }
+.matrix-cell.med { background: rgba(245, 158, 11, 0.2); color: #fde68a; border: 1px solid rgba(245, 158, 11, 0.4); }
+.matrix-cell.high { background: rgba(239, 68, 68, 0.25); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.5); }
+.matrix-cell.crit { background: rgba(239, 68, 68, 0.5); color: #fff; border: 1px solid var(--red-primary); }
+
+/* --------------------------------------------------------------------------
+   8. AUTOMATED RESPONSE (SOAR)
+   -------------------------------------------------------------------------- */
+.soar-pipeline-strip {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  margin-bottom: 24px;
+}
+
+.pipeline-node {
+  flex: 1;
+  min-width: 180px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  position: relative;
+}
+
+.pipeline-arrow {
+  color: var(--cyan-primary);
+  flex-shrink: 0;
+}
+
+.approval-gate-card {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(15, 23, 42, 0.8) 100%);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  margin-bottom: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   9. AI SOC COPILOT (SLIDE-OVER DRAWER)
+   -------------------------------------------------------------------------- */
+.copilot-drawer {
+  position: fixed;
+  top: 0;
+  right: -440px;
+  width: 420px;
+  height: 100vh;
+  background: var(--bg-primary);
+  border-left: 1px solid var(--border-medium);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.7);
+  z-index: var(--z-copilot);
+  display: flex;
+  flex-direction: column;
+  transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.copilot-drawer.open {
+  right: 0;
+}
+
+.copilot-header {
+  height: var(--topbar-height);
+  padding: 0 18px;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-secondary);
+}
+
+.copilot-messages-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.copilot-msg {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 90%;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.copilot-msg.user {
+  align-self: flex-end;
+}
+
+.copilot-msg.user .msg-bubble {
+  background: linear-gradient(135deg, var(--cyan-deep) 0%, #1e3a8a 100%);
+  color: var(--text-bright);
+  border-radius: 12px 12px 2px 12px;
+  padding: 10px 14px;
+  font-size: 12.5px;
+}
+
+.copilot-msg.agent {
+  align-self: flex-start;
+  max-width: 96%;
+}
+
+.copilot-msg.agent .msg-bubble {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-medium);
+  color: var(--text-main);
+  border-radius: 12px 12px 12px 2px;
+  padding: 12px 16px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.copilot-quick-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 16px 12px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.copilot-chip-btn {
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  color: #d8b4fe;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.copilot-chip-btn:hover {
+  background: rgba(168, 85, 247, 0.25);
+  border-color: var(--purple-primary);
+  color: #fff;
+}
+
+.copilot-input-bar {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   10. REPORTS PREVIEW
+   -------------------------------------------------------------------------- */
+.report-preview-sheet {
+  background: #0b1120;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  padding: 32px;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-lg);
+}
+
+.report-header-section {
+  border-bottom: 2px solid var(--border-medium);
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}

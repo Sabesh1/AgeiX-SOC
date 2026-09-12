@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AegisX SOC — Autonomous Multi-Agent Security Operations Center Intelligence Platform</title>
+  <meta name="description" content="Next-generation AI-powered autonomous multi-agent SOC intelligence platform for enterprise cyber threat detection, investigation, and automated containment.">
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Core Design System Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/screens.css">
+</head>
+<body>
+
+<div id="app-root">
+
+  <!-- ========================================================================
+       1. LEFT NAVIGATION SIDEBAR
+       ======================================================================== -->
+  <aside class="soc-sidebar" id="soc-sidebar">
+    <div class="sidebar-header">
+      <a href="#" class="brand-badge" id="brand-home-link">
+        <div class="brand-icon">
+          <!-- Cyber Shield Multi-Agent Icon -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <circle cx="12" cy="11" r="3"/>
+          </svg>
+        </div>
+        <div class="brand-info">
+          <div class="brand-title">Aegis<span>X</span> SOC</div>
+          <div class="brand-subtitle">Autonomous Defense</div>
+        </div>
+      </a>
+      <button class="sidebar-toggle-btn" id="sidebar-toggle-btn" title="Toggle Sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Navigation Menu Items -->
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Operations</div>
+      <a class="nav-item active" data-screen="screen-overview" id="nav-overview">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+        <span class="nav-label">SOC Overview</span>
+      </a>
+
+      <a class="nav-item" data-screen="screen-live-threats" id="nav-live-threats">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+        </svg>
+        <span class="nav-label">Live Threats</span>
+        <span class="nav-badge alert">LIVE</span>
+      </a>
+
+      <a class="nav-item" data-screen="screen-incident-details" id="nav-incidents">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+          <line x1="12" y1="9" x2="12" y2="13"></line>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+        <span class="nav-label">Incidents (INC-2048)</span>
+        <span class="nav-badge alert">7 Active</span>
+      </a>
+
+      <a class="nav-item" data-screen="screen-agents" id="nav-agents">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"></circle>
+          <circle cx="19" cy="6" r="2"></circle>
+          <circle cx="5" cy="6" r="2"></circle>
+          <circle cx="19" cy="18" r="2"></circle>
+          <circle cx="5" cy="18" r="2"></circle>
+          <line x1="12" y1="9" x2="19" y2="7"></line>
+          <line x1="12" y1="9" x2="5" y2="7"></line>
+          <line x1="12" y1="15" x2="19" y2="17"></line>
+          <line x1="12" y1="15" x2="5" y2="17"></line>
+        </svg>
+        <span class="nav-label">AI Agents</span>
+        <span class="nav-badge active">6 Online</span>
+      </a>
+
+      <div class="nav-section-label">Intelligence</div>
+      <a class="nav-item" data-screen="screen-threat-intel" id="nav-intel">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <span class="nav-label">Threat Intelligence</span>
+      </a>
+
+      <a class="nav-item" data-screen="screen-attack-timeline" id="nav-timeline">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        <span class="nav-label">Attack Timeline</span>
+      </a>
+
+      <a class="nav-item" data-screen="screen-risk-analytics" id="nav-risk">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="20" x2="18" y2="10"></line>
+          <line x1="12" y1="20" x2="12" y2="4"></line>
+          <line x1="6" y1="20" x2="6" y2="14"></line>
+        </svg>
+        <span class="nav-label">Risk Analytics</span>
+      </a>
+
+      <div class="nav-section-label">Action & Governance</div>
+      <a class="nav-item" data-screen="screen-automated-response" id="nav-response">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </svg>
+        <span class="nav-label">Automated Response</span>
+        <span class="nav-badge alert">Approval Req</span>
+      </a>
+
+      <a class="nav-item" data-screen="screen-reports" id="nav-reports">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        <span class="nav-label">Reports</span>
+      </a>
+
+      <a class="nav-item" data-screen="screen-settings" id="nav-settings">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+        <span class="nav-label">Settings</span>
+      </a>
+    </nav>
+
+    <!-- Sidebar Footer -->
+    <div class="sidebar-footer">
+      <div class="system-status-indicator">
+        <span class="pulse-dot emerald"></span>
+        <span>All Systems Operational</span>
+      </div>
+
+      <div class="analyst-profile-mini" id="sidebar-analyst-profile" title="Switch Clearance / Logout">
+        <div class="analyst-avatar">AV</div>
+        <div class="analyst-meta">
+          <div class="analyst-name">Alex Vance</div>
+          <div class="analyst-role" id="analyst-role-text">Tier 3 Lead Analyst</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================================================
+       2. TOP NAVIGATION BAR
+       ======================================================================== -->
+  <div class="soc-main-wrapper">
+    <header class="soc-topbar">
+      <div class="topbar-left">
+        <!-- Platform Health Badge -->
+        <div class="ai-status-pill">
+          <span class="pulse-dot emerald" style="width: 6px; height: 6px;"></span>
+          <span>AI SOC ONLINE</span>
+        </div>
+
+        <!-- Global Search / Command Palette Trigger -->
+        <div class="global-search-container">
+          <svg class="search-icon-fixed" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" class="global-search-input" id="global-search-input" placeholder="Search incidents, IPs, agents, CVEs..." readonly>
+          <span class="search-shortcut-hint">Ctrl + K</span>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <!-- Time Range Selector -->
+        <div class="time-range-picker">
+          <button class="time-btn" data-range="15m">15m</button>
+          <button class="time-btn" data-range="1h">1h</button>
+          <button class="time-btn active" data-range="24h">24h</button>
+          <button class="time-btn" data-range="7d">7d</button>
+        </div>
+
+        <!-- Tactical Audio Sound Effects Toggle -->
+        <button class="topbar-icon-btn" id="topbar-sound-btn" title="Toggle Cyber Audio Alerts">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+        </button>
+
+        <!-- Notifications Bell -->
+        <button class="topbar-icon-btn" id="topbar-notif-btn" title="View Incident Notifications" onclick="window.socApp.showToast('Security Alert', '2 Pending Critical Approvals awaiting Tier 3 sign-off', 'danger')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          </svg>
+          <span class="notification-badge-dot"></span>
+        </button>
+
+        <!-- Floating Aegis AI Copilot Button -->
+        <button class="btn-copilot-pill" id="topbar-copilot-btn">
+          <svg class="copilot-sparkle" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/>
+          </svg>
+          <span>Aegis AI Copilot</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ========================================================================
+         MAIN CONTENT VIEWPORT (SCREENS CONTAINER)
+         ======================================================================== -->
+    <main class="soc-content-viewport">
+
+      <!-- ====================================================================
+           SCREEN 2: SOC OVERVIEW DASHBOARD
+           ==================================================================== -->
+      <section class="screen-container active" id="screen-overview">
+        <!-- Top KPI Cards Grid -->
+        <div class="kpi-grid">
+          <!-- KPI 1: Active Threats -->
+          <div class="kpi-card critical">
+            <div class="kpi-top">
+              <span class="kpi-label">Active Threats</span>
+              <div class="kpi-icon-pill" style="background: rgba(239, 68, 68, 0.15); color: var(--red-primary);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+            </div>
+            <div class="kpi-value-row">
+              <span class="kpi-value" id="kpi-active-threats-val">142</span>
+              <span class="kpi-trend up-red">▲ +12.4%</span>
+            </div>
+            <canvas class="kpi-sparkline" id="sparkline-1"></canvas>
+          </div>
+
+          <!-- KPI 2: Critical Incidents -->
+          <div class="kpi-card critical">
+            <div class="kpi-top">
+              <span class="kpi-label">Critical Incidents</span>
+              <div class="kpi-icon-pill" style="background: rgba(239, 68, 68, 0.15); color: var(--red-primary);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/></svg>
+              </div>
+            </div>
+            <div class="kpi-value-row">
+              <span class="kpi-value">7</span>
+              <span class="kpi-trend up-red">▲ +2 active</span>
+            </div>
+            <canvas class="kpi-sparkline" id="sparkline-2"></canvas>
+          </div>
+
+          <!-- KPI 3: Events Processed -->
+          <div class="kpi-card info">
+            <div class="kpi-top">
+              <span class="kpi-label">Events Processed</span>
+              <div class="kpi-icon-pill" style="background: rgba(0, 242, 254, 0.15); color: var(--cyan-primary);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+              </div>
+            </div>
+            <div class="kpi-value-row">
+              <span class="kpi-value">24.8M</span>
+              <span class="kpi-trend up-cyan">▲ 1.2M/h</span>
+            </div>
+            <canvas class="kpi-sparkline" id="sparkline-3"></canvas>
+          </div>
+
+          <!-- KPI 4: Assets at Risk -->
+          <div class="kpi-card warning">
+            <div class="kpi-top">
+              <span class="kpi-label">Assets at Risk</span>
+              <div class="kpi-icon-pill" style="background: rgba(245, 158, 11, 0.15); color: var(--amber-primary);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+              </div>
+            </div>
+            <div class="kpi-value-row">
+              <span class="kpi-value">38</span>
+              <span class="kpi-trend down-green">▼ -4 contained</span>
+            </div>
+            <canvas class="kpi-sparkline" id="sparkline-4"></canvas>
+          </div>
+
+          <!-- KPI 5: AI Investigations -->
+          <div class="kpi-card purple">
+            <div class="kpi-top">
+              <span class="kpi-label">AI Investigations</span>
+              <div class="kpi-icon-pill" style="background: rgba(168, 85, 247, 0.15); color: var(--purple-primary);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+              </div>
+            </div>
+            <div class="kpi-value-row">
+              <span class="kpi-value">89</span>
+              <span class="kpi-trend" style="color: var(--purple-primary);">99.4% acc</span>
+            </div>
+            <canvas class="kpi-sparkline" id="sparkline-5"></canvas>
+          </div>
+
+          <!-- KPI 6: Automated Responses -->
+          <div class="kpi-card blue">
+            <div class="kpi-top">
+              <span class="kpi-label">Automated Actions</span>
+              <div class="kpi-icon-pill" style="background: rgba(59, 130, 246, 0.15); color: var(--blue-primary);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              </div>
+            </div>
+            <div class="kpi-value-row">
+              <span class="kpi-value">1,412</span>
+              <span class="kpi-trend down-green">98.2% auto</span>
+            </div>
+            <canvas class="kpi-sparkline" id="sparkline-6"></canvas>
+          </div>
+        </div>
+
+        <!-- Main Upper Grid: Interactive Threat Map & AI Agents Live Monitor -->
+        <div class="dashboard-grid-main">
+          <!-- Section A: Interactive Live Threat Map -->
+          <div class="threat-map-container">
+            <!-- Map Overlay Controls -->
+            <div class="map-overlay-controls">
+              <button class="btn btn-sm btn-primary map-filter-btn" data-filter="all">All Attacks</button>
+              <button class="btn btn-sm btn-secondary map-filter-btn" data-filter="ransomware">Ransomware</button>
+              <button class="btn btn-sm btn-secondary map-filter-btn" data-filter="c2">C2 Beacons</button>
+              <button class="btn btn-sm btn-secondary map-filter-btn" data-filter="ddos">DDoS</button>
+            </div>
+
+            <!-- Stats Badge Top Right -->
+            <div class="map-stats-badge" id="map-stats-badge">
+              <span>ACTIVE ARCS: <strong style="color: var(--cyan-primary);">7 Trajectories</strong></span>
+              <span>GEO ORIGINS: <strong style="color: var(--red-primary);">7 Hubs Active</strong></span>
+            </div>
+
+            <!-- Canvas Render Layer -->
+            <canvas id="threat-map-canvas" class="map-canvas-layer"></canvas>
+
+            <!-- Map Legend -->
+            <div class="map-legend">
+              <div class="map-legend-item">
+                <span class="status-dot red"></span>
+                <span>Critical Target (DC-01 Mumbai)</span>
+              </div>
+              <div class="map-legend-item">
+                <span class="status-dot cyan"></span>
+                <span>Enterprise Cloud VPC</span>
+              </div>
+              <div class="map-legend-item">
+                <span class="status-dot amber"></span>
+                <span>Active Attack Arc</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section D: AI Agent Real-Time Activity Panel -->
+          <div class="cyber-card agents-activity-panel">
+            <div class="cyber-card-header">
+              <div class="cyber-card-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan-primary)" stroke-width="2">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <circle cx="19" cy="6" r="2"></circle>
+                  <circle cx="5" cy="6" r="2"></circle>
+                  <circle cx="19" cy="18" r="2"></circle>
+                  <circle cx="5" cy="18" r="2"></circle>
+                </svg>
+                AI Agent Activity
+              </div>
+              <span class="badge badge-online">6 OPERATIONAL</span>
+            </div>
+            <div style="font-size: 11px; color: var(--text-dim); margin-top: -6px; margin-bottom: 6px;">
+              Autonomous agents collaborating in real time:
+            </div>
+            <!-- Dynamic Agent Rows -->
+            <div id="overview-agents-panel"></div>
+          </div>
+        </div>
+
+        <!-- Lower Grid: Threat Activity Graph & Active Incidents Table -->
+        <div class="dashboard-grid-bottom">
+          <!-- Section B: Real-Time Threat Activity Graph -->
+          <div class="cyber-card">
+            <div class="cyber-card-header">
+              <div class="cyber-card-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan-primary)" stroke-width="2">
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                </svg>
+                Threat Activity Velocity
+              </div>
+              <div style="display: flex; gap: 10px; font-size: 10px; font-family: var(--font-mono);">
+                <span style="color: #3b82f6;">● Network</span>
+                <span style="color: #ef4444;">● Malware</span>
+                <span style="color: #f59e0b;">● Phish</span>
+                <span style="color: #a855f7;">● PrivEsc</span>
+                <span style="color: #00f2fe;">● Exfil</span>
+              </div>
+            </div>
+            <div class="chart-canvas-container">
+              <canvas id="threat-activity-canvas"></canvas>
+            </div>
+          </div>
+
+          <!-- Section C: Active Incidents Table -->
+          <div class="cyber-card">
+            <div class="cyber-card-header">
+              <div class="cyber-card-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red-primary)" stroke-width="2">
+                  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+                </svg>
+                Active Incidents Requiring Action
+              </div>
+              <button class="btn btn-sm btn-outline" onclick="window.socApp.navigateTo('screen-incident-details')">View Details →</button>
+            </div>
+            <div class="soc-table-wrapper" style="max-height: 260px;">
+              <table class="soc-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Threat Name</th>
+                    <th>Severity</th>
+                    <th>Asset</th>
+                    <th>Source</th>
+                    <th>Risk</th>
+                    <th>Agent</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="overview-incidents-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           SCREEN 3: LIVE THREATS TELEMETRY STREAM
+           ==================================================================== -->
+      <section class="screen-container" id="screen-live-threats">
+        <div class="stream-controls-bar">
+          <div class="stream-filter-group">
+            <span style="font-size: 11px; font-weight: 700; color: var(--text-dim); text-transform: uppercase;">Telemetry Controls:</span>
+            <button class="btn btn-sm btn-secondary" id="stream-pause-btn">⏸ Pause Stream</button>
+            <div style="display: flex; gap: 4px; background: var(--bg-primary); padding: 2px; border-radius: var(--radius-xs);">
+              <button class="btn btn-sm btn-secondary speed-btn active" data-speed="1">1x</button>
+              <button class="btn btn-sm btn-secondary speed-btn" data-speed="2">2x</button>
+              <button class="btn btn-sm btn-secondary speed-btn" data-speed="5">5x</button>
+            </div>
+          </div>
+
+          <div class="stream-filter-group">
+            <select class="soc-select" id="stream-filter-sev">
+              <option value="all">All Severities</option>
+              <option value="critical">Critical Only</option>
+              <option value="high">High & Critical</option>
+            </select>
+            <select class="soc-select" id="stream-filter-type">
+              <option value="all">All Attack Types</option>
+              <option value="malware">Malware / C2</option>
+              <option value="sqli">Web Application</option>
+              <option value="privilege">Privilege Escalation</option>
+            </select>
+            <input type="text" class="soc-input" placeholder="Filter by IP, asset, or hash..." style="width: 220px; height: 34px;">
+          </div>
+        </div>
+
+        <div class="soc-table-wrapper">
+          <table class="soc-table">
+            <thead>
+              <tr>
+                <th>Timestamp (UTC)</th>
+                <th>Source IP / Origin</th>
+                <th>Security Event</th>
+                <th>Severity</th>
+                <th>Target Asset</th>
+                <th>AI Classification</th>
+                <th>Perimeter Status</th>
+                <th>Triage</th>
+              </tr>
+            </thead>
+            <tbody id="live-stream-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           SCREEN 4: INCIDENT DETAILS & DEEP FORENSIC INVESTIGATION
+           ==================================================================== -->
+      <section class="screen-container" id="screen-incident-details">
+        <!-- Header Banner -->
+        <div class="incident-header-banner">
+          <div class="incident-title-area">
+            <span class="incident-id-tag" id="inc-detail-id">INC-2048</span>
+            <div>
+              <div class="incident-name-big" id="inc-detail-title">Ransomware Staging & Privileged Credential Compromise</div>
+              <div class="incident-sub-info" id="inc-detail-sub">
+                <span>Threat: <strong>Ransomware / Lateral Movement</strong></span> • 
+                <span>Target: <strong>DB-SERVER-04</strong></span> • 
+                <span>Detected: <strong>2026-09-12 14:00:12 UTC</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="incident-metrics-strip">
+            <div class="risk-gauge-box">
+              <div class="gauge-circle" style="background: radial-gradient(circle, rgba(239, 68, 68, 0.15) 0%, rgba(10, 15, 29, 0.8) 70%); border: 2px solid var(--red-primary); box-shadow: var(--shadow-cyber-red);">
+                <span class="gauge-inner-val" id="inc-detail-risk-val" style="color: var(--red-primary);">98%</span>
+              </div>
+              <div>
+                <div style="font-size: 10px; text-transform: uppercase; color: var(--text-dim); font-weight: 700;">Risk Score</div>
+                <div style="font-size: 12px; font-weight: 700; color: #f87171;">CRITICAL</div>
+              </div>
+            </div>
+
+            <div class="risk-gauge-box">
+              <div class="gauge-circle" style="background: radial-gradient(circle, rgba(0, 242, 254, 0.15) 0%, rgba(10, 15, 29, 0.8) 70%); border: 2px solid var(--cyan-primary); box-shadow: var(--shadow-cyber-cyan);">
+                <span class="gauge-inner-val" id="inc-detail-conf-val" style="color: var(--cyan-primary);">96%</span>
+              </div>
+              <div>
+                <div style="font-size: 10px; text-transform: uppercase; color: var(--text-dim); font-weight: 700;">AI Certainty</div>
+                <div style="font-size: 12px; font-weight: 700; color: var(--cyan-primary);">HIGH CONFIDENCE</div>
+              </div>
+            </div>
+
+            <button class="btn btn-primary" onclick="window.socApp.navigateTo('screen-automated-response')">
+              ⚡ Execute Containment
+            </button>
+          </div>
+        </div>
+
+        <!-- Section A & B: Incident Summary & AI Plain Language Explanation -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+          <!-- Section A: Incident Summary -->
+          <div class="cyber-card">
+            <div class="cyber-card-header">
+              <div class="cyber-card-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan-primary)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                Incident Summary Dossier
+              </div>
+            </div>
+            <div style="font-size: 12px; color: var(--text-bright); line-height: 1.5; margin-bottom: 14px;" id="inc-detail-summary-text">
+              Loading incident forensic summary...
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 11.5px; background: rgba(0,0,0,0.25); padding: 12px; border-radius: 6px;">
+              <div><strong style="color: var(--text-dim);">What Happened:</strong> <div id="inc-detail-what" style="color: #fff;"></div></div>
+              <div><strong style="color: var(--text-dim);">When:</strong> <div id="inc-detail-when" class="soc-mono" style="color: var(--cyan-primary);"></div></div>
+              <div><strong style="color: var(--text-dim);">Affected Systems:</strong> <div id="inc-detail-affected" style="color: #fca5a5;"></div></div>
+              <div><strong style="color: var(--text-dim);">Attack Source:</strong> <div id="inc-detail-source" class="soc-mono" style="color: #fff;"></div></div>
+            </div>
+          </div>
+
+          <!-- Section B: AI Investigation Summary (Plain English) -->
+          <div class="cyber-card" style="border-left: 3px solid var(--purple-primary);">
+            <div class="cyber-card-header">
+              <div class="cyber-card-title" style="color: #d8b4fe;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--purple-primary)" stroke-width="2"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>
+                AI Hunter Agent Investigation Synthesis
+              </div>
+              <span class="badge badge-purple">AUTONOMOUS CORRELATION</span>
+            </div>
+            <div style="font-size: 12.5px; color: var(--text-bright); line-height: 1.6; background: rgba(168, 85, 247, 0.08); border: 1px solid rgba(168, 85, 247, 0.25); padding: 14px; border-radius: 8px;">
+              “Multiple failed authentication attempts on the corporate VPN gateway were followed by a successful privileged Kerberos logon for service account <code>svc_dbbackup</code> from Bucharest, Romania. Upon authenticating, the adversary executed an encoded PowerShell payload that dumped credentials from <code>lsass.exe</code> using ProcDump, forged a Golden Ticket, and traversed laterally to <strong>DB-SERVER-04</strong>. Volume shadow copies were deleted to prevent recovery before staging the <strong>LockBit 3.0</strong> encrypter.”
+            </div>
+            <div style="margin-top: 10px; font-size: 11.5px; color: var(--text-muted); display: flex; align-items: center; gap: 8px;">
+              <span style="color: var(--green-primary); font-weight: 700;">Potential Impact:</span>
+              <span id="inc-detail-impact">High: Direct encryption risk to 4.2TB production financial data.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section C: Attack Timeline Kill-Chain (Horizontal Stepper) -->
+        <div class="cyber-card" style="margin-bottom: 20px;">
+          <div class="cyber-card-header">
+            <div class="cyber-card-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan-primary)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              Adversary Kill-Chain Progression (MITRE ATT&CK Mapping)
+            </div>
+          </div>
+          <div class="killchain-timeline" id="inc-detail-killchain"></div>
+        </div>
+
+        <!-- Section D: Evidence Locker & Section E: Agent Decision Trace Grid -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <!-- Section D: Evidence Locker -->
+          <div class="cyber-card">
+            <div class="cyber-card-header">
+              <div class="cyber-card-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan-primary)" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                Forensic Evidence Locker
+              </div>
+            </div>
+
+            <!-- Evidence Tabs -->
+            <div class="soc-tabs-header">
+              <button class="soc-tab-btn active" onclick="document.querySelectorAll('.ev-tab').forEach(e => e.style.display='none'); document.getElementById('ev-tab-ips').style.display='block';">IPs & Domains</button>
+              <button class="soc-tab-btn" onclick="document.querySelectorAll('.ev-tab').forEach(e => e.style.display='none'); document.getElementById('ev-tab-hashes').style.display='block';">File Hashes</button>
+              <button class="soc-tab-btn" onclick="document.querySelectorAll('.ev-tab').forEach(e => e.style.display='none'); document.getElementById('ev-tab-logs').style.display='block';">Raw Telemetry Logs</button>
+            </div>
+
+            <!-- Tab 1: IPs & Domains -->
+            <div class="ev-tab" id="ev-tab-ips">
+              <table class="soc-table">
+                <thead>
+                  <tr>
+                    <th>IP / Domain</th>
+                    <th>Role</th>
+                    <th>Geo Location</th>
+                    <th>Reputation</th>
+                    <th>CTI Action</th>
+                  </tr>
+                </thead>
+                <tbody id="inc-evidence-ips-tbody"></tbody>
+              </table>
+            </div>
+
+            <!-- Tab 2: Hashes -->
+            <div class="ev-tab" id="ev-tab-hashes" style="display: none;">
+              <table class="soc-table">
+                <thead>
+                  <tr>
+                    <th>SHA-256 Hash</th>
+                    <th>File Name</th>
+                    <th>Verdict</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="inc-evidence-hashes-tbody"></tbody>
+              </table>
+            </div>
+
+            <!-- Tab 3: Raw Sysmon Logs -->
+            <div class="ev-tab" id="ev-tab-logs" style="display: none;">
+              <div class="soc-mono" style="font-size: 11px; background: rgba(0,0,0,0.5); padding: 12px; border-radius: 6px; max-height: 240px; overflow-y: auto; color: #a5f3fc; line-height: 1.6;" id="inc-evidence-raw-logs"></div>
+            </div>
+          </div>
+
+          <!-- Section E: Agent Decision Trace -->
+          <div class="cyber-card">
+            <div class="cyber-card-header">
+              <div class="cyber-card-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green-primary)" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                Autonomous Agent Decision Trace
+              </div>
+              <span class="badge badge-online">VERIFIABLE TRAIL</span>
+            </div>
+            <div style="font-size: 11.5px; color: var(--text-dim); margin-bottom: 12px;">
+              Explainable neural decision trail showing contribution from each agent:
+            </div>
+            <div class="decision-trace-list" id="inc-detail-decision-trace"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           SCREEN 5: AI AGENTS COMMAND CENTER
+           ==================================================================== -->
+      <section class="screen-container" id="screen-agents">
+        <!-- Interactive Multi-Agent Network Communication Canvas -->
+        <div class="cyber-card" style="margin-bottom: 20px;">
+          <div class="cyber-card-header">
+            <div class="cyber-card-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan-primary)" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><circle cx="19" cy="6" r="2"></circle><circle cx="5" cy="6" r="2"></circle></svg>
+              Multi-Agent Neural Interconnect Graph
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 11px;">
+              <span class="pulse-dot emerald"></span>
+              <span id="agent-graph-live-log" style="color: var(--cyan-primary); font-family: var(--font-mono);">Sentinel Agent broadcasting correlated beacon anomalies to Hunter Agent</span>
+            </div>
+          </div>
+          <div id="agent-network-canvas-wrap" class="agent-network-canvas-container"></div>
+        </div>
+
+        <!-- 6 Agent Cards Grid -->
+        <div class="agents-matrix-grid" id="agent-command-cards-grid"></div>
+      </section>
+
+      <!-- ====================================================================
+           SCREEN 6: THREAT INTELLIGENCE (CTI HUB)
+           ==================================================================== -->
+      <section class="screen-container" id="screen-threat-intel">
+        <!-- Search Box -->
+        <div class="intel-search-box">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="intel-global-search" class="soc-input" placeholder="Search IP, domain, hash, CVE or threat actor..." style="border: none; background: transparent; height: 32px;">
+          <span class="search-shortcut-hint">Global CTI Feeds</span>
+        </div>
+
+        <!-- Threat Actors & Active Campaigns -->
+        <div style="margin-bottom: 24px;">
+          <div style="font-size: 13px; font-weight: 700; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; letter-spacing: 0.8px;">
+            Targeted Adversaries & Threat Actor Attribution
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;" id="intel-actors-grid"></div>
+        </div>
+
+        <!-- IOC Tables Grid: Malicious IPs & Domains -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px;">
+          <!-- Malicious IPs -->
+          <div class="cyber-card">
+            <div class="cyber-card-header">
+              <div class="cyber-card-title">Malicious IP Infrastructure</div>
+              <span class="badge badge-critical">Active C2</span>
+            </div>
+            <div class="soc-table-wrapper">
+              <table class="soc-table">
+                <thead>
+                  <tr>
+                    <th>IP Address</th>
+                    <th>ISP / Provider</th>
+                    <th>Geo</th>
+                    <th>Confidence</th>
+                    <th>Sightings</th>
+                    <th>Actor</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="intel-ips-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Suspicious Domains -->
+          <div class="cyber-card">
+            <div class="cyber-card-header">
+              <div class="cyber-card-title">Suspicious Domains & Sinkholes</div>
+              <span class="badge badge-purple">Waterhole / Phish</span>
+            </div>
+            <div class="soc-table-wrapper">
+              <table class="soc-table">
+                <thead>
+                  <tr>
+                    <th>Domain</th>
+                    <th>Registrar</th>
+                    <th>Threat Category</th>
+                    <th>Confidence</th>
+                    <th>Date Added</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="intel-domains-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- MITRE ATT&CK Matrix Interactive Heatmap -->
+        <div class="cyber-card">
+          <div class="cyber-card-header">
+            <div class="cyber-card-title">MITRE ATT&CK Enterprise Matrix (Observed Adversary TTPs)</div>
+            <span class="badge badge-online">Auto-Enriched</span>
+          </div>
+          <div class="mitre-matrix-grid" id="intel-mitre-grid"></div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           SCREEN 7: ATTACK TIMELINE (CROSS-ENTERPRISE KILL-CHAIN)
+           ==================================================================== -->
+      <section class="screen-container" id="screen-attack-timeline">
+        <div class="cyber-card" style="margin-bottom: 20px;">
+          <div class="cyber-card-header">
+            <div class="cyber-card-title">Chronological Attack Reconstruction & Asset Causality Map</div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn btn-sm btn-secondary" onclick="window.socApp.showToast('Timeline Filter', 'Filtering to DB-SERVER-04', 'info')">Asset: DB-SERVER-04</button>
+              <button class="btn btn-sm btn-secondary" onclick="window.socApp.showToast('Timeline Filter', 'Showing Initial Access to Impact', 'info')">All Tactics</button>
+            </div>
+          </div>
+          <div id="attack-timeline-container" style="padding-top: 10px;"></div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           SCREEN 8: RISK ANALYTICS & PREDICTIVE FORECASTING
+           ==================================================================== -->
+      <section class="screen-container" id="screen-risk-analytics">
+        <div style="display: grid; grid-template-columns: 340px 1fr; gap: 20px; margin-bottom: 20px;">
+          <!-- Overall Security Risk Score & Donut -->
+          <div class="cyber-card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+            <div class="cyber-card-title" style="margin-bottom: 14px;">Overall Security Risk Score</div>
+            <div style="width: 240px; height: 200px;">
+              <canvas id="risk-donut-canvas-page"></canvas>
+            </div>
+            <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 10px; max-width: 260px;">
+              Composite risk calculated from asset criticality, active exploitability, and credential exposure.
+            </div>
+          </div>
+
+          <!-- 5x5 Likelihood vs Impact Risk Matrix -->
+          <div class="cyber-card">
+            <div class="cyber-card-header">
+              <div class="cyber-card-title">5x5 Enterprise Risk Matrix (Likelihood vs. Business Impact)</div>
+              <span class="badge badge-critical">38 Assets At Risk</span>
+            </div>
+            <div class="risk-matrix-grid-5x5">
+              <div style="color: var(--text-dim); display: flex; align-items: center;">Catastrophic</div>
+              <div class="matrix-cell med" data-sev="med">4</div>
+              <div class="matrix-cell high" data-sev="high">8</div>
+              <div class="matrix-cell crit" data-sev="crit">12</div>
+              <div class="matrix-cell crit" data-sev="crit">14</div>
+              <div class="matrix-cell crit" data-sev="crit">18</div>
+
+              <div style="color: var(--text-dim); display: flex; align-items: center;">Critical</div>
+              <div class="matrix-cell low" data-sev="low">2</div>
+              <div class="matrix-cell med" data-sev="med">6</div>
+              <div class="matrix-cell high" data-sev="high">9</div>
+              <div class="matrix-cell crit" data-sev="crit">15</div>
+              <div class="matrix-cell crit" data-sev="crit">16</div>
+
+              <div style="color: var(--text-dim); display: flex; align-items: center;">Moderate</div>
+              <div class="matrix-cell low" data-sev="low">1</div>
+              <div class="matrix-cell med" data-sev="med">3</div>
+              <div class="matrix-cell med" data-sev="med">7</div>
+              <div class="matrix-cell high" data-sev="high">11</div>
+              <div class="matrix-cell crit" data-sev="crit">13</div>
+
+              <div style="color: var(--text-dim); display: flex; align-items: center;">Minor</div>
+              <div class="matrix-cell low" data-sev="low">0</div>
+              <div class="matrix-cell low" data-sev="low">1</div>
+              <div class="matrix-cell med" data-sev="med">4</div>
+              <div class="matrix-cell med" data-sev="med">5</div>
+              <div class="matrix-cell high" data-sev="high">10</div>
+
+              <div style="color: var(--text-dim); display: flex; align-items: center;">Insignificant</div>
+              <div class="matrix-cell low" data-sev="low">0</div>
+              <div class="matrix-cell low" data-sev="low">0</div>
+              <div class="matrix-cell low" data-sev="low">1</div>
+              <div class="matrix-cell med" data-sev="med">2</div>
+              <div class="matrix-cell med" data-sev="med">3</div>
+
+              <!-- Bottom Labels -->
+              <div></div>
+              <div style="text-align: center; color: var(--text-dim);">Rare</div>
+              <div style="text-align: center; color: var(--text-dim);">Unlikely</div>
+              <div style="text-align: center; color: var(--text-dim);">Possible</div>
+              <div style="text-align: center; color: var(--text-dim);">Likely</div>
+              <div style="text-align: center; color: var(--text-dim);">Frequent</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Top Vulnerable Assets & Blast Radius Ranking -->
+        <div class="cyber-card">
+          <div class="cyber-card-header">
+            <div class="cyber-card-title">Top Vulnerable Assets & Crown Jewel Blast Radius</div>
+            <button class="btn btn-sm btn-outline" onclick="window.socApp.showToast('Asset Inventory', 'Refreshed 38 active hosts', 'info')">Sync CMDB</button>
+          </div>
+          <div class="soc-table-wrapper">
+            <table class="soc-table">
+              <thead>
+                <tr>
+                  <th>Asset Hostname</th>
+                  <th>Classification</th>
+                  <th>IP Address</th>
+                  <th>Critical Vulnerability</th>
+                  <th>CVSS Score</th>
+                  <th>Blast Radius</th>
+                  <th>Agent Recommendation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="soc-mono" style="font-weight: 700; color: #fff;">DB-SERVER-04</td>
+                  <td><span class="badge badge-critical">Crown Jewel (Tier-0)</span></td>
+                  <td class="soc-mono" style="color: var(--cyan-primary);">10.10.40.18</td>
+                  <td>CVE-2023-38606 (Kernel PrivEsc)</td>
+                  <td style="color: #f87171; font-weight: 700;">9.8 CRITICAL</td>
+                  <td>3 Linked Backup Arrays</td>
+                  <td><button class="btn btn-sm btn-danger" onclick="window.socApp.navigateTo('screen-automated-response')">Isolate Now</button></td>
+                </tr>
+                <tr>
+                  <td class="soc-mono" style="font-weight: 700; color: #fff;">AD-DC-01</td>
+                  <td><span class="badge badge-critical">Identity Hub</span></td>
+                  <td class="soc-mono" style="color: var(--cyan-primary);">10.10.10.4</td>
+                  <td>CVE-2022-37969 (Kerberos PAC)</td>
+                  <td style="color: #f87171; font-weight: 700;">9.6 CRITICAL</td>
+                  <td>Entire Active Directory Domain</td>
+                  <td><button class="btn btn-sm btn-outline" onclick="window.socApp.copilot.ask('Explain Kerberos risk on AD-DC-01')">Remediate</button></td>
+                </tr>
+                <tr>
+                  <td class="soc-mono" style="font-weight: 700; color: #fff;">PROD-K8S-CLUSTER-02</td>
+                  <td><span class="badge badge-high">Cloud Compute</span></td>
+                  <td class="soc-mono" style="color: var(--cyan-primary);">172.24.8.12</td>
+                  <td>Misconfigured RBAC ServiceAccount</td>
+                  <td style="color: #fbbf24; font-weight: 700;">8.4 HIGH</td>
+                  <td>42 Microservices</td>
+                  <td><button class="btn btn-sm btn-outline" onclick="window.socApp.showToast('Policy Enforced', 'Restricted K8s ServiceAccount permissions', 'success')">Enforce</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           SCREEN 9: AUTOMATED RESPONSE (SOAR ORCHESTRATION)
+           ==================================================================== -->
+      <section class="screen-container" id="screen-automated-response">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <div>
+            <h2 style="font-size: 18px; font-weight: 800; color: #fff;">SOAR Playbook Orchestration & Response Command</h2>
+            <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 4px;">
+              Autonomous actions execute safely, while high-impact actions mandate human-in-the-loop approval.
+            </div>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn btn-secondary" onclick="window.socApp.showToast('Rollback Mode', 'All response actions maintain 1-click snapshot rollback capability', 'info')">
+              ↺ View Rollback History
+            </button>
+            <button class="btn btn-primary" onclick="window.socApp.showToast('Playbook Library', 'Loaded 24 SOAR automated playbooks', 'success')">
+              + New Custom Playbook
+            </button>
+          </div>
+        </div>
+
+        <!-- Active Containment Recommendations with Approval Gates -->
+        <div id="soar-recommendations-container"></div>
+      </section>
+
+      <!-- ====================================================================
+           SCREEN 10: REPORTS GENERATION & FORENSIC DOSSIERS
+           ==================================================================== -->
+      <section class="screen-container" id="screen-reports">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <div>
+            <h2 style="font-size: 18px; font-weight: 800; color: #fff;">Executive Reports & Regulatory Compliance Dossiers</h2>
+            <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 4px;">
+              Auto-synthesized by Reporter Agent with cryptographic audit trail.
+            </div>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn btn-secondary" id="report-export-csv-btn">Export CSV</button>
+            <button class="btn btn-secondary" id="report-share-btn">Share Link</button>
+            <button class="btn btn-primary" id="report-export-pdf-btn">🖨 Print / Export PDF</button>
+          </div>
+        </div>
+
+        <!-- Executive Report Sheet Preview -->
+        <div class="report-preview-sheet">
+          <div class="report-header-section">
+            <div>
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                <span class="badge badge-critical">INCIDENT FORENSIC DOSSIER</span>
+                <span class="soc-mono" style="color: var(--cyan-primary); font-size: 11px;">CONFIDENTIAL // TIER-3 EYES ONLY</span>
+              </div>
+              <h1 style="font-size: 22px; font-weight: 800; color: #fff;">LockBit 3.0 Ransomware Containment Report (INC-2048)</h1>
+              <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 4px;">
+                Authored by: <strong>Reporter Agent</strong> • Verified by: <strong>Alex Vance (Lead Tier 3)</strong>
+              </div>
+            </div>
+            <div style="text-align: right; font-family: var(--font-mono); font-size: 11px; color: var(--text-dim);">
+              <div>Generated: 2026-09-12 14:15 UTC</div>
+              <div>Digest: sha256:d891b2c4e88...</div>
+            </div>
+          </div>
+
+          <div style="font-size: 12.5px; line-height: 1.6; color: var(--text-bright); margin-bottom: 20px;">
+            <h3 style="font-size: 14px; font-weight: 700; color: var(--cyan-primary); margin-bottom: 8px;">Executive Summary</h3>
+            <p>
+              On September 12, 2026 at 13:58 UTC, the AegisX Autonomous SOC detected and contained an unauthorized intrusion attempt against Tier-0 Database host <code>DB-SERVER-04</code>. The threat actor, attributed to the FIN12 / LockBit 3.0 syndicate operating from <code>185.220.101.5</code>, acquired service account credentials and dumped LSASS memory using Mimikatz. Within 12 minutes of detection, Sentinel and Response Agents halted outbound command-and-control channels, isolated the database adapter, and invalidated compromised Active Directory tickets.
+            </p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; background: rgba(0,0,0,0.3); padding: 14px; border-radius: 6px;">
+            <div>
+              <div style="font-size: 10px; color: var(--text-dim); text-transform: uppercase;">Mean Time to Detect</div>
+              <div style="font-size: 16px; font-weight: 800; color: var(--green-primary); font-family: var(--font-mono);">18 Seconds</div>
+            </div>
+            <div>
+              <div style="font-size: 10px; color: var(--text-dim); text-transform: uppercase;">Mean Time to Contain</div>
+              <div style="font-size: 16px; font-weight: 800; color: var(--cyan-primary); font-family: var(--font-mono);">12.4 Minutes</div>
+            </div>
+            <div>
+              <div style="font-size: 10px; color: var(--text-dim); text-transform: uppercase;">Data Exfiltrated</div>
+              <div style="font-size: 16px; font-weight: 800; color: var(--green-primary); font-family: var(--font-mono);">0.00 MB</div>
+            </div>
+            <div>
+              <div style="font-size: 10px; color: var(--text-dim); text-transform: uppercase;">Regulatory Impact</div>
+              <div style="font-size: 16px; font-weight: 800; color: #6ee7b7; font-family: var(--font-mono);">NIST 2.0 / CERT Compliant</div>
+            </div>
+          </div>
+
+          <h3 style="font-size: 14px; font-weight: 700; color: var(--cyan-primary); margin-bottom: 8px;">Remediation & Evidence Checklist</h3>
+          <div style="font-size: 12px; line-height: 1.7; color: var(--text-muted);">
+            <div>✔ Perimeter firewall rule deployed blocking <code>185.220.101.5</code> globally</div>
+            <div>✔ Memory dump captured from DB-SERVER-04 prior to network isolation</div>
+            <div>✔ Compromised service account <code>svc_dbbackup</code> locked and Kerberos tickets revoked</div>
+            <div>✔ Malicious binary <code>db_sync.exe</code> (SHA256: 9e107d9d...) submitted to malware repository</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           SCREEN 11: SETTINGS & GOVERNANCE
+           ==================================================================== -->
+      <section class="screen-container" id="screen-settings">
+        <div class="cyber-card" style="margin-bottom: 20px;">
+          <div class="cyber-card-header">
+            <div class="cyber-card-title">Agent Governance & Autonomy Thresholds</div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.2); padding: 12px; border-radius: 6px;">
+              <div>
+                <div style="font-weight: 700; color: #fff;">Two-Man Rule for Destructive Containment Actions</div>
+                <div style="font-size: 11px; color: var(--text-dim);">Require confirmation from at least 1 Tier 3 Analyst before cutting production network adapters.</div>
+              </div>
+              <label class="toggle-switch"><input type="checkbox" checked><span class="slider-round"></span></label>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.2); padding: 12px; border-radius: 6px;">
+              <div>
+                <div style="font-weight: 700; color: #fff;">Real-Time SIEM & EDR Bi-Directional Sync</div>
+                <div style="font-size: 11px; color: var(--text-dim);">Push auto-generated containment playbooks to CrowdStrike Falcon, Splunk, and AWS Security Hub.</div>
+              </div>
+              <label class="toggle-switch"><input type="checkbox" checked><span class="slider-round"></span></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="cyber-card">
+          <div class="cyber-card-header">
+            <div class="cyber-card-title">Immutable Cryptographic Audit Trail</div>
+            <span class="badge badge-online">HMAC-SHA256 SIGNED</span>
+          </div>
+          <div class="soc-table-wrapper">
+            <table class="soc-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Actor / Agent</th>
+                  <th>Action Executed</th>
+                  <th>Target Asset</th>
+                  <th>Verification Hash</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="soc-mono">2026-09-12 14:10:12</td>
+                  <td>Response Agent</td>
+                  <td>Perimeter Firewall Drop Rule (185.220.101.5)</td>
+                  <td class="soc-mono">PERIM-FW-01</td>
+                  <td class="soc-mono" style="color: var(--cyan-primary);">sha256:f10428ad...</td>
+                </tr>
+                <tr>
+                  <td class="soc-mono">2026-09-12 14:07:30</td>
+                  <td>Risk Agent</td>
+                  <td>Assigned Risk Score 98 (Tier-0 DB Asset)</td>
+                  <td class="soc-mono">DB-SERVER-04</td>
+                  <td class="soc-mono" style="color: var(--cyan-primary);">sha256:e903ba24...</td>
+                </tr>
+                <tr>
+                  <td class="soc-mono">2026-09-12 14:03:52</td>
+                  <td>Hunter Agent</td>
+                  <td>Flagged Mimikatz Process Injection in LSASS</td>
+                  <td class="soc-mono">DB-SERVER-04</td>
+                  <td class="soc-mono" style="color: var(--cyan-primary);">sha256:c720e18a...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="margin-top: 14px; text-align: right;">
+            <button class="btn btn-primary" id="settings-save-btn">Save Policy Changes</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ========================================================================
+       SCREEN 1: LOGIN & CLEARANCE SELECTION MODAL OVERLAY
+       ======================================================================== -->
+  <div class="login-screen-wrap hidden" id="screen-login">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="login-logo-box">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <circle cx="12" cy="11" r="3"/>
+          </svg>
+        </div>
+        <div class="login-title">Aegis<span>X</span> SOC Portal</div>
+        <div class="login-desc">Autonomous Multi-Agent Intelligence & Defense Platform</div>
+      </div>
+
+      <div class="clearance-selector-group">
+        <label class="clearance-label">Select Analyst Clearance Level</label>
+        <div class="clearance-grid">
+          <div class="clearance-option" data-tier="tier-1">
+            <div class="clearance-tier">Tier 1 Analyst</div>
+            <div class="clearance-sub">Telemetry Triage</div>
+          </div>
+          <div class="clearance-option" data-tier="tier-2">
+            <div class="clearance-tier">Tier 2 Investigator</div>
+            <div class="clearance-sub">Forensic Analysis</div>
+          </div>
+          <div class="clearance-option selected" data-tier="tier-3">
+            <div class="clearance-tier">Tier 3 Lead Analyst</div>
+            <div class="clearance-sub">Containment Authority</div>
+          </div>
+          <div class="clearance-option" data-tier="admin">
+            <div class="clearance-tier">SecOps Commander</div>
+            <div class="clearance-sub">Full SOAR Admin</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <label class="clearance-label">Analyst Identifier</label>
+        <input type="text" class="soc-input" value="alex.vance@aegis-defense.internal" readonly>
+      </div>
+
+      <div style="margin-bottom: 24px;">
+        <label class="clearance-label">MFA Biometric / Hardware Security Token</label>
+        <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(0,242,254,0.06); border: 1px solid rgba(0,242,254,0.25); padding: 10px 14px; border-radius: 6px;">
+          <span style="color: var(--cyan-primary); font-family: var(--font-mono); font-size: 11.5px;">✓ YubiKey 5 FIPS Authenticated</span>
+          <span class="badge badge-online">VERIFIED</span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-lg" id="login-enter-btn" style="width: 100%;">
+        Enter AI SOC Command Center →
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       SCREEN 10 / COMPONENT: FLOATING AEGIS AI COPILOT DRAWER
+       ======================================================================== -->
+  <aside class="copilot-drawer" id="copilot-drawer">
+    <div class="copilot-header">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <svg class="copilot-sparkle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--purple-primary)" stroke-width="2">
+          <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/>
+        </svg>
+        <span style="font-weight: 700; color: #fff; font-size: 14px;">Aegis AI Copilot</span>
+      </div>
+      <button class="sidebar-toggle-btn" onclick="window.socCopilot.close()" title="Close Copilot">✕</button>
+    </div>
+
+    <!-- Message History -->
+    <div class="copilot-messages-area" id="copilot-messages">
+      <div class="copilot-msg agent">
+        <div class="msg-bubble">
+          Greetings, Analyst Vance. I am the <strong>Aegis AI Copilot</strong>, connected to all 6 active security agents (Sentinel, Hunter, Intel, Risk, Response, Reporter).
+          <br><br>
+          You can ask me to triage active incidents, enrich IOCs, analyze kill-chains, or recommend containment playbooks.
+        </div>
+        <div style="font-size: 10px; color: var(--text-dim); padding-left: 4px;">Aegis Multi-Agent • Ready</div>
+      </div>
+    </div>
+
+    <!-- Quick Prompt Chips -->
+    <div class="copilot-quick-chips">
+      <button class="copilot-chip-btn">“Show me all critical threats.”</button>
+      <button class="copilot-chip-btn">“Why is this incident high risk?”</button>
+      <button class="copilot-chip-btn">“Investigate this IP address.”</button>
+      <button class="copilot-chip-btn">“Summarize the attack.”</button>
+      <button class="copilot-chip-btn">“What assets are affected?”</button>
+      <button class="copilot-chip-btn">“Recommend a response.”</button>
+      <button class="copilot-chip-btn">“Generate an incident report.”</button>
+    </div>
+
+    <!-- Input Bar -->
+    <div class="copilot-input-bar">
+      <input type="text" id="copilot-input" class="soc-input" placeholder="Ask Aegis AI Copilot anything..." style="height: 36px;">
+      <button class="btn btn-primary" id="copilot-send-btn" style="padding: 7px 14px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ========================================================================
+       COMMAND PALETTE MODAL (Ctrl + K)
+       ======================================================================== -->
+  <div class="soc-modal-backdrop" id="command-palette-modal">
+    <div class="soc-modal-dialog" style="max-width: 540px;">
+      <div style="padding: 14px; border-bottom: 1px solid var(--border-subtle); display: flex; align-items: center; gap: 10px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan-primary)" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="cmd-palette-input" class="soc-input" placeholder="Type a command or jump to screen..." style="border: none; background: transparent; height: 32px; font-size: 13px;">
+        <span class="search-shortcut-hint">ESC to close</span>
+      </div>
+      <div style="padding: 10px; max-height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 4px;" id="cmd-palette-list">
+        <div class="cmd-item" onclick="window.socApp.executeCommand('navigate', 'screen-overview')" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 6px; cursor: pointer; color: #fff;">
+          <span>📊</span> <span>Go to SOC Overview Dashboard</span>
+        </div>
+        <div class="cmd-item" onclick="window.socApp.executeCommand('navigate', 'screen-live-threats')" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 6px; cursor: pointer; color: #fff;">
+          <span>⚡</span> <span>Go to Live Threats Telemetry Stream</span>
+        </div>
+        <div class="cmd-item" onclick="window.socApp.executeCommand('incident', 'INC-2048')" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 6px; cursor: pointer; color: #fff;">
+          <span>🚨</span> <span>Investigate Incident INC-2048 (LockBit Ransomware)</span>
+        </div>
+        <div class="cmd-item" onclick="window.socApp.executeCommand('navigate', 'screen-agents')" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 6px; cursor: pointer; color: #fff;">
+          <span>🤖</span> <span>Open AI Agents Command Center</span>
+        </div>
+        <div class="cmd-item" onclick="window.socApp.executeCommand('navigate', 'screen-threat-intel')" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 6px; cursor: pointer; color: #fff;">
+          <span>🔍</span> <span>Search Threat Intelligence & MITRE Matrix</span>
+        </div>
+        <div class="cmd-item" onclick="window.socApp.executeCommand('navigate', 'screen-automated-response')" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 6px; cursor: pointer; color: #fff;">
+          <span>🛡</span> <span>Review Pending SOAR Approvals</span>
+        </div>
+        <div class="cmd-item" onclick="window.socApp.executeCommand('copilot', 'Recommend a response')" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 6px; cursor: pointer; color: #fff;">
+          <span>✨</span> <span>Ask AI Copilot: Recommend a response</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       GENERAL MODAL BACKDROP (Dynamic inspection, configurations, dry-runs)
+       ======================================================================== -->
+  <div class="soc-modal-backdrop" id="general-modal-backdrop">
+    <div class="soc-modal-dialog">
+      <div class="soc-modal-header">
+        <div class="soc-modal-title" id="general-modal-title">Modal Title</div>
+        <button class="soc-modal-close" id="general-modal-close">✕</button>
+      </div>
+      <div class="soc-modal-body" id="general-modal-body"></div>
+      <div class="soc-modal-footer" id="general-modal-footer"></div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       TOAST NOTIFICATION CONTAINER
+       ======================================================================== -->
+  <div class="soc-toast-container" id="soc-toast-container"></div>
+
+</div>
+
+<!-- Application JavaScript Modules -->
+<script src="js/data.js"></script>
+<script src="js/sound.js"></script>
+<script src="js/state.js"></script>
+<script src="js/components/threatMap.js"></script>
+<script src="js/components/charts.js"></script>
+<script src="js/components/agentGraph.js"></script>
+<script src="js/components/copilot.js"></script>
+<script src="js/components/streamSimulator.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

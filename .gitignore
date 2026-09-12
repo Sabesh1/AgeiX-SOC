@@ -1,0 +1,41 @@
+# Environments
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Database artifacts
+backend/*.db
+backend/*.db-shm
+backend/*.db-wal
+*.db
+*.db-shm
+*.db-wal
+
+# Logs & temporary files
+*.log
+scratch/
+.system_generated/
+
+# OS specific
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE & Editor files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

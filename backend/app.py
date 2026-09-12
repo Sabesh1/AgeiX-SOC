@@ -20,7 +20,7 @@ from backend.seed_data import seed_initial_data
 from backend.agents import agent_engine
 
 # Routers
-from backend.routers import threats, incidents, agents, intel, risk, response, copilot, reports
+from backend.routers import threats, incidents, agents, intel, risk, response, copilot, reports, integrations
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -61,6 +61,7 @@ app.include_router(risk.router)
 app.include_router(response.router)
 app.include_router(copilot.router)
 app.include_router(reports.router)
+app.include_router(integrations.router)
 
 @app.get("/api/health")
 def health_check():

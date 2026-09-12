@@ -1,0 +1,35 @@
+name: AegisX SOC CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    name: Backend Diagnostics & Agent Integrity Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Install Dependencies
+        run: uv sync --frozen || uv pip install -r pyproject.toml
+
+      - name: Run Complete 27-Point Diagnostic Test Suite
+        run: |
+          uv run python test_backend_complete.py
+
+      - name: Validate Health Endpoint
+        run: |
+          uv run python -c "from backend.app import app; assert app.title == 'AegisX SOC Intelligence Platform API'"

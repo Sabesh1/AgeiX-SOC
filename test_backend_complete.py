@@ -276,6 +276,38 @@ async def run_all_tests():
     except Exception as e:
         record_test("24. Static Web Application Mount (/)", False, str(e))
 
+    # 25. External SIEM/EDR Integrations Status (/api/integrations/status)
+    try:
+        status_code, data = http_get("/api/integrations/status")
+        connectors = data.get("connectors", [])
+        passed = status_code == 200 and len(connectors) >= 4
+        record_test("25. SIEM/EDR Integrations Status (/api/integrations/status)", passed, f"Status {status_code}, {len(connectors)} connectors active")
+    except Exception as e:
+        record_test("25. SIEM/EDR Integrations Status (/api/integrations/status)", False, str(e))
+
+    # 26. External CTI IOC Enrichment (/api/integrations/enrich)
+    try:
+        status_code, data = http_post("/api/integrations/enrich", {"indicator": "194.165.16.42", "indicator_type": "ip"})
+        passed = status_code == 200 and data.get("malicious") is True and "confidence_score" in data
+        record_test("26. CTI Feed Enrichment (/api/integrations/enrich)", passed, f"Status {status_code}, Score: {data.get('confidence_score')}, Source: {data.get('source')}")
+    except Exception as e:
+        record_test("26. CTI Feed Enrichment (/api/integrations/enrich)", False, str(e))
+
+    # 27. Security Incident Webhook Dispatch (/api/integrations/webhook/dispatch)
+    try:
+        payload = {
+            "channel": "slack",
+            "title": "Automated Containment Alert",
+            "incident_id": "INC-2048",
+            "severity": "CRITICAL",
+            "summary": "LockBit 3.0 lateral movement quarantined by Response Agent."
+        }
+        status_code, data = http_post("/api/integrations/webhook/dispatch", payload)
+        passed = status_code == 200 and data.get("status") == "dispatched" and "verification_signature" in data
+        record_test("27. Outbound Alert Webhook Dispatch (/api/integrations/webhook/dispatch)", passed, f"Status {status_code}, Sig: {data.get('verification_signature', '')[:16]}...")
+    except Exception as e:
+        record_test("27. Outbound Alert Webhook Dispatch (/api/integrations/webhook/dispatch)", False, str(e))
+
     # Final Summary
     passed_count = sum(1 for r in results if r["status"] == "PASS")
     total_count = len(results)

@@ -73,13 +73,21 @@
 
 ---
 
-## Getting Started
+## Deployment Options
 
-### Prerequisites
-- Python 3.12+ (or [uv](https://github.com/astral-sh/uv) package manager)
-- Any modern web browser (Edge, Chrome, Firefox, Safari)
+### Option A: 1-Click Deploy to Vercel (Cloud Serverless)
 
-### Installation & Launch
+Deploy AegisX SOC with zero configuration to Vercel's global edge network:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FSabesh1%2FAgeiX-SOC)
+
+1. Click the **Deploy with Vercel** button above or import `Sabesh1/AgeiX-SOC` directly in your [Vercel Dashboard](https://vercel.com).
+2. Vercel automatically detects [`vercel.json`](file:///c:/Users/HP/New%20folder/vercel.json) and builds both the static frontend CDN assets and the Python serverless API backend ([`api/index.py`](file:///c:/Users/HP/New%20folder/api/index.py)).
+3. No environment variables are required for baseline operation — the platform automatically provisions in-memory/`/tmp` SQLite persistence with baseline incident telemetry.
+
+---
+
+### Option B: Run Locally with Python & `uv`
 
 1. **Clone the repository**:
    ```bash
@@ -89,8 +97,7 @@
 
 2. **Run with `uv` (Recommended)**:
    ```bash
-   # Install dependencies and start server
-   uv run python -m uvicorn backend.app:app --host 0.0.0.0 --port 8000 --reload
+   uv run python -m uvicorn backend.app:app --host 0.0.0.0 --port 8000
    ```
 
 3. **Or launch via PowerShell script (Windows)**:
@@ -105,9 +112,19 @@
 
 ---
 
+### Option C: Production Docker Container
+
+```bash
+# Build and run container with docker-compose
+docker compose up -d --build
+```
+Access the containerized instance at `http://localhost:8000`.
+
+---
+
 ## Testing & Diagnostics
 
-A comprehensive 24-point diagnostic suite tests all REST routes, WebSocket feeds, SQLite persistence, and agent message queues:
+A comprehensive 27-point diagnostic suite tests all REST routes, WebSocket feeds, external SIEM/EDR connectors, CTI reputation lookups, and outbound alert webhooks:
 
 ```bash
 uv run python test_backend_complete.py

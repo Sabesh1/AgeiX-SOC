@@ -5,7 +5,12 @@ import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-DB_PATH = BASE_DIR / "backend" / "aegisx_soc.db"
+
+# Support Vercel serverless environment (/tmp directory is writable)
+if os.getenv("VERCEL"):
+    DB_PATH = Path("/tmp") / "aegisx_soc.db"
+else:
+    DB_PATH = BASE_DIR / "backend" / "aegisx_soc.db"
 
 HOST = os.getenv("AEGIS_HOST", "0.0.0.0")
 PORT = int(os.getenv("AEGIS_PORT", "8000"))
